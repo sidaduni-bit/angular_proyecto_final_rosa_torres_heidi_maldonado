@@ -1,0 +1,25 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" routerLink="/">
+      <img class="brand-logo" src="assets/umes-logo.png" alt="UMES Universidad Mesoamericana">
+      <span class="brand-caption"><small>Gestión académica</small></span>
+    </a>
+    <div class="nav-caption">MENÚ PRINCIPAL</div>
+    <nav class="main-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-label="Inicio" title="Inicio"><mat-icon>space_dashboard</mat-icon> Inicio</a>
+      <a routerLink="/estudiantes" routerLinkActive="active" aria-label="Estudiantes" title="Estudiantes"><mat-icon>groups</mat-icon> Estudiantes</a>
+      <a routerLink="/inscripciones" routerLinkActive="active" aria-label="Inscripciones" title="Inscripciones"><mat-icon>assignment</mat-icon> Inscripciones</a>
+      <a routerLink="/cursos" routerLinkActive="active" aria-label="Cursos" title="Cursos"><mat-icon>menu_book</mat-icon> Cursos</a>
+      <a routerLink="/respaldos" routerLinkActive="active" aria-label="Respaldos" title="Respaldos"><mat-icon>backup</mat-icon> Respaldos</a>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-dot"></span> Sistema local activo</div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar">
+      <div><span class="eyebrow">UNIVERSIDAD MESOAMERICANA</span><strong>Portal de administración</strong></div>
+      <div class="user-chip"><span class="avatar">A</span><span>Administración<small>Panel académico</small></span></div>
+    </header>
+    <section class="page-content"><router-outlet /></section>
+    <footer>UMES · Sistema de gestión de inscripciones <span>Angular 20</span></footer>
+  </main>
+</div>
