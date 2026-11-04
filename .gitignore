@@ -4,3 +4,5 @@
 /.vscode/*
 !.vscode/extensions.json
 .DS_Store
+   .idea/
+   angular_proyecto_final_rosa_torres_heidi_maldonado/
