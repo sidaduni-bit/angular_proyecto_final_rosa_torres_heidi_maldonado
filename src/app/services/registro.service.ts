@@ -236,6 +236,7 @@ export class RegistroService {
       this.esObjeto(contacto) &&
       this.esTexto(contacto.numero) &&
       /^[0-9+() -]{8,20}$/.test(contacto.numero) &&
+      contacto.numero.replace(/\D/g, '').length >= 8 &&
       typeof contacto.tipo === 'string' &&
       ['Móvil', 'Casa', 'Trabajo', 'Otro'].includes(contacto.tipo) &&
       typeof contacto.activo === 'boolean'
