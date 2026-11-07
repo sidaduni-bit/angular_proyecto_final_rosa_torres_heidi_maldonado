@@ -1,0 +1,74 @@
+<section class="home-hero">
+  <div class="home-hero-copy">
+    <span class="home-hero-kicker"><span class="hero-status-dot"></span> UNIVERSIDAD MESOAMERICANA · GESTIÓN ACADÉMICA</span>
+    <h1>Un mejor comienzo<br>para cada <em>historia.</em></h1>
+    <p>Organiza estudiantes, inscripciones y cursos desde un solo espacio, con claridad y cuidado.</p>
+    <div class="home-hero-actions">
+      <a class="btn home-hero-primary" routerLink="/estudiantes/nuevo"><mat-icon>person_add</mat-icon> Registrar estudiante</a>
+      <a class="home-hero-secondary" routerLink="/inscripciones/nueva">Crear inscripción <mat-icon>arrow_forward</mat-icon></a>
+    </div>
+  </div>
+  <div class="home-hero-art" aria-hidden="true">
+    <span class="hero-art-orbit hero-art-orbit-one"></span>
+    <span class="hero-art-orbit hero-art-orbit-two"></span>
+    <svg class="welcome-decoration" viewBox="0 0 100 100">
+      <path class="butterfly-wing butterfly-wing-left" d="M47 48C39 24 19 11 11 22 2 36 20 51 45 54 27 51 15 61 19 73c5 15 22 10 31-13z"/>
+      <path class="butterfly-wing butterfly-wing-right" d="M53 48c8-24 28-37 36-26 9 14-9 29-34 32 18-3 30 7 26 19-5 15-22 10-31-13z"/>
+      <path class="butterfly-body" d="M50 39c-5 8-5 26 0 39 5-13 5-31 0-39z"/>
+      <path class="butterfly-antenna" d="M49 42c-8-7-10-12-9-17m11 17c8-7 10-12 9-17"/>
+    </svg>
+    <span class="home-art-caption">Aprender · Crecer · Avanzar</span>
+  </div>
+</section>
+
+<section class="home-overview" aria-labelledby="overview-title">
+  <div class="home-section-heading">
+    <div><span class="eyebrow">UNA MIRADA RÁPIDA</span><h2 id="overview-title">Resumen académico</h2></div>
+    <span class="home-section-note"><span class="hero-status-dot"></span> Datos de este navegador</span>
+  </div>
+  <div class="stats-grid">
+    <article class="stat-card"><span class="stat-icon lavender"><mat-icon>groups</mat-icon></span><div><small>Estudiantes registrados</small><strong>{{ estudiantes().length }}</strong><span class="stat-note">Registros locales</span></div></article>
+    <article class="stat-card"><span class="stat-icon peach"><mat-icon>assignment</mat-icon></span><div><small>Inscripciones</small><strong>{{ inscripciones().length }}</strong><span class="stat-note">Todos los períodos</span></div></article>
+    <article class="stat-card"><span class="stat-icon mint"><mat-icon>menu_book</mat-icon></span><div><small>Cursos disponibles</small><strong>{{ cursos.length }}</strong><span class="stat-note">En catálogo JSON</span></div></article>
+    <article class="stat-card"><span class="stat-icon blue"><mat-icon>calendar_month</mat-icon></span><div><small>Períodos académicos</small><strong>{{ periodos.length }}</strong><span class="stat-note">Configurados</span></div></article>
+  </div>
+</section>
+
+<section class="home-tools" aria-labelledby="tools-title">
+  <div class="home-section-heading">
+    <div><span class="eyebrow">ACCESOS DIRECTOS</span><h2 id="tools-title">¿Qué deseas gestionar?</h2></div>
+    <a routerLink="/inscripciones" class="home-all-records">Ver inscripciones <mat-icon>arrow_forward</mat-icon></a>
+  </div>
+  <div class="home-actions">
+    <a class="home-action-card home-action-students" routerLink="/estudiantes/nuevo">
+      <span class="home-action-icon"><mat-icon>person_add</mat-icon></span>
+      <span class="home-action-index">01 / ESTUDIANTES</span>
+      <strong>Registrar estudiante</strong>
+      <small>Agrega datos personales y contactos.</small>
+      <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
+    </a>
+    <a class="home-action-card home-action-enrollments" routerLink="/inscripciones/nueva">
+      <span class="home-action-icon"><mat-icon>post_add</mat-icon></span>
+      <span class="home-action-index">02 / INSCRIPCIONES</span>
+      <strong>Nueva inscripción</strong>
+      <small>Asigna período, jornada y cursos.</small>
+      <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
+    </a>
+    <a class="home-action-card home-action-courses" routerLink="/cursos">
+      <span class="home-action-icon"><mat-icon>auto_stories</mat-icon></span>
+      <span class="home-action-index">03 / OFERTA ACADÉMICA</span>
+      <strong>Explorar cursos</strong>
+      <small>Consulta la oferta disponible.</small>
+      <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
+    </a>
+    <a class="home-action-card home-action-backups" routerLink="/respaldos">
+      <span class="home-action-icon"><mat-icon>cloud_download</mat-icon></span>
+      <span class="home-action-index">04 / RESPALDOS</span>
+      <strong>Proteger información</strong>
+      <small>Importa o exporta tus archivos JSON.</small>
+      <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
+    </a>
+  </div>
+</section>
+
+<div class="notice home-storage-notice"><mat-icon>info</mat-icon><span><strong>Almacenamiento local:</strong> los registros se guardan en este navegador. Utiliza Respaldos para trasladar información a otro equipo.</span></div>
