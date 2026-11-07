@@ -1788,6 +1788,30 @@ td .cell-sub,
   margin-bottom: 0;
 }
 
+.home-action-icon {
+  z-index: 1;
+  width: 112px;
+  height: 105px;
+  margin-bottom: 8px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.home-action-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-action-students .home-action-icon,
+.home-action-enrollments .home-action-icon,
+.home-action-courses .home-action-icon,
+.home-action-backups .home-action-icon {
+  background: transparent;
+}
+
 .home-overview .stat-card {
   position: relative;
   min-height: 130px;
@@ -2990,4 +3014,264 @@ td .cell-sub,
 .form-actions {
   border-color: rgba(231, 215, 225, .95);
   background: rgba(250, 244, 248, .94);
+}
+
+.home-overview .stat-card {
+  min-height: 142px;
+  gap: 12px;
+  padding: 16px;
+}
+
+.home-overview .stat-icon {
+  display: flex;
+  width: 90px;
+  height: 90px;
+  flex: 0 0 90px;
+  align-items: center;
+  justify-content: center;
+  padding-right: 11px;
+  border: 0;
+  border-right: 1px solid rgba(134, 97, 128, .18);
+  border-radius: 0;
+  background: transparent;
+}
+
+.home-overview .stat-icon img {
+  display: block;
+  width: 76px;
+  height: 76px;
+  object-fit: contain;
+}
+
+.home-overview .stat-card > div {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.home-overview .stat-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-overview .stat-heart {
+  width: 18px;
+  height: 18px;
+  color: #e77eae;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.home-storage-notice {
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  border-color: #f0cadd;
+  border-radius: 14px;
+  background: linear-gradient(100deg, #fff0f7, #f8eef8);
+  color: #685263;
+  box-shadow: 0 7px 20px rgba(183, 104, 145, .09);
+}
+
+.home-storage-notice > mat-icon:first-child {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e975a8;
+  color: #fff;
+  font-size: 23px;
+}
+
+.home-storage-notice > span {
+  flex: 1;
+}
+
+.home-storage-notice strong {
+  color: #984d73;
+}
+
+.home-storage-notice .storage-notice-heart {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  color: #e77eae;
+  font-size: 29px;
+}
+
+@media (max-width: 760px) {
+  .home-overview .stat-card {
+    gap: 9px;
+    padding: 13px;
+  }
+
+  .home-overview .stat-icon {
+    width: 76px;
+    height: 78px;
+    flex-basis: 76px;
+    padding-right: 8px;
+  }
+
+  .home-action-icon {
+    width: 96px;
+    height: 90px;
+  }
+
+  .home-overview .stat-icon img {
+    width: 66px;
+    height: 66px;
+  }
+
+  .home-overview .stat-card strong {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-storage-notice {
+    gap: 9px;
+    padding: 12px;
+  }
+
+  .home-storage-notice > mat-icon:first-child {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+
+  .home-storage-notice .storage-notice-heart {
+    width: 23px;
+    height: 23px;
+    flex-basis: 23px;
+    font-size: 23px;
+  }
+}
+
+.course-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.course-card-trigger {
+  min-height: 205px;
+  padding: 14px;
+  border-radius: 17px;
+  text-align: left;
+}
+
+.course-card-top {
+  display: flex;
+  min-height: 94px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.course-card-trigger .course-symbol {
+  display: block;
+  width: 126px;
+  height: 94px;
+  flex: 0 1 126px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.course-card-trigger .course-symbol img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.course-card-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  color: #e77eae;
+}
+
+.course-card-credit strong {
+  color: #392344;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.course-card-credit mat-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+.course-card-trigger > .eyebrow {
+  margin-top: 3px;
+  color: #98667d;
+  font-size: 9px;
+  letter-spacing: .04em;
+}
+
+.course-card-trigger .course-card-title {
+  margin-top: 3px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.course-card-trigger .course-card-career {
+  margin-top: 5px;
+  color: #756d7a;
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.course-card-trigger .course-card-footer {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top-color: rgba(143, 111, 139, .14);
+  font-size: 10px;
+}
+
+@media (max-width: 1100px) {
+  .course-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .course-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .course-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .course-card-trigger {
+    min-height: 195px;
+    padding: 12px;
+  }
+
+  .course-card-top {
+    min-height: 82px;
+  }
+
+  .course-card-trigger .course-symbol {
+    height: 82px;
+  }
+}
+
+@media (max-width: 420px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
 }

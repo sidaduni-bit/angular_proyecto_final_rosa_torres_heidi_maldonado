@@ -27,10 +27,38 @@
     <span class="home-section-note"><span class="hero-status-dot"></span> Datos de este navegador</span>
   </div>
   <div class="stats-grid">
-    <article class="stat-card"><span class="stat-icon lavender"><mat-icon>groups</mat-icon></span><div><small>Estudiantes registrados</small><strong>{{ estudiantes().length }}</strong><span class="stat-note">Registros locales</span></div></article>
-    <article class="stat-card"><span class="stat-icon peach"><mat-icon>assignment</mat-icon></span><div><small>Inscripciones</small><strong>{{ inscripciones().length }}</strong><span class="stat-note">Todos los períodos</span></div></article>
-    <article class="stat-card"><span class="stat-icon mint"><mat-icon>menu_book</mat-icon></span><div><small>Cursos disponibles</small><strong>{{ cursos.length }}</strong><span class="stat-note">En catálogo JSON</span></div></article>
-    <article class="stat-card"><span class="stat-icon blue"><mat-icon>calendar_month</mat-icon></span><div><small>Períodos académicos</small><strong>{{ periodos.length }}</strong><span class="stat-note">Configurados</span></div></article>
+    <article class="stat-card">
+      <span class="stat-icon lavender" aria-hidden="true"><img src="assets/summary-icons/students.png" alt=""></span>
+      <div>
+        <small>Estudiantes registrados</small>
+        <span class="stat-value"><strong>{{ estudiantes().length }}</strong><mat-icon class="stat-heart" aria-hidden="true">favorite</mat-icon></span>
+        <span class="stat-note">Registros locales</span>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-icon peach" aria-hidden="true"><img src="assets/summary-icons/enrollments.png" alt=""></span>
+      <div>
+        <small>Inscripciones</small>
+        <span class="stat-value"><strong>{{ inscripciones().length }}</strong><mat-icon class="stat-heart" aria-hidden="true">favorite</mat-icon></span>
+        <span class="stat-note">Todos los períodos</span>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-icon mint" aria-hidden="true"><img src="assets/summary-icons/courses.png" alt=""></span>
+      <div>
+        <small>Cursos disponibles</small>
+        <span class="stat-value"><strong>{{ cursos.length }}</strong><mat-icon class="stat-heart" aria-hidden="true">favorite</mat-icon></span>
+        <span class="stat-note">En catálogo JSON</span>
+      </div>
+    </article>
+    <article class="stat-card">
+      <span class="stat-icon blue" aria-hidden="true"><img src="assets/summary-icons/periods.png" alt=""></span>
+      <div>
+        <small>Períodos académicos</small>
+        <span class="stat-value"><strong>{{ periodos.length }}</strong><mat-icon class="stat-heart" aria-hidden="true">favorite</mat-icon></span>
+        <span class="stat-note">Configurados</span>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -41,28 +69,28 @@
   </div>
   <div class="home-actions">
     <a class="home-action-card home-action-students" routerLink="/estudiantes/nuevo">
-      <span class="home-action-icon"><mat-icon>person_add</mat-icon></span>
+      <span class="home-action-icon" aria-hidden="true"><img src="assets/summary-icons/action-students.png" alt=""></span>
       <span class="home-action-index">01 / ESTUDIANTES</span>
       <strong>Registrar estudiante</strong>
       <small>Agrega datos personales y contactos.</small>
       <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
     </a>
     <a class="home-action-card home-action-enrollments" routerLink="/inscripciones/nueva">
-      <span class="home-action-icon"><mat-icon>post_add</mat-icon></span>
+      <span class="home-action-icon" aria-hidden="true"><img src="assets/summary-icons/action-enrollments.png" alt=""></span>
       <span class="home-action-index">02 / INSCRIPCIONES</span>
       <strong>Nueva inscripción</strong>
       <small>Asigna período, jornada y cursos.</small>
       <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
     </a>
     <a class="home-action-card home-action-courses" routerLink="/cursos">
-      <span class="home-action-icon"><mat-icon>auto_stories</mat-icon></span>
+      <span class="home-action-icon" aria-hidden="true"><img src="assets/summary-icons/action-courses.png" alt=""></span>
       <span class="home-action-index">03 / OFERTA ACADÉMICA</span>
       <strong>Explorar cursos</strong>
       <small>Consulta la oferta disponible.</small>
       <span class="home-action-arrow"><mat-icon>arrow_outward</mat-icon></span>
     </a>
     <a class="home-action-card home-action-backups" routerLink="/respaldos">
-      <span class="home-action-icon"><mat-icon>cloud_download</mat-icon></span>
+      <span class="home-action-icon" aria-hidden="true"><img src="assets/summary-icons/action-backups.png" alt=""></span>
       <span class="home-action-index">04 / RESPALDOS</span>
       <strong>Proteger información</strong>
       <small>Importa o exporta tus archivos JSON.</small>
@@ -71,4 +99,4 @@
   </div>
 </section>
 
-<div class="notice home-storage-notice"><mat-icon>info</mat-icon><span><strong>Almacenamiento local:</strong> los registros se guardan en este navegador. Utiliza Respaldos para trasladar información a otro equipo.</span></div>
+<div class="notice home-storage-notice"><mat-icon aria-hidden="true">priority_high</mat-icon><span><strong>Almacenamiento local:</strong> los registros se guardan en este navegador. Utiliza Respaldos para trasladar información a otro equipo.</span><mat-icon class="storage-notice-heart" aria-hidden="true">favorite</mat-icon></div>

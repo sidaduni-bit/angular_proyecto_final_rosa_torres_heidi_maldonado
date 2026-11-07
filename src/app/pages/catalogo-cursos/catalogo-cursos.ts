@@ -13,6 +13,27 @@ export class CatalogoCursos {
   readonly cursos = this.catalogos.cursos;
   readonly carreras = this.catalogos.carreras;
   readonly cursoSeleccionado = signal<string | null>(null);
+  readonly iconosCursos = [
+    'programacion-web',
+    'arquitectura-sistemas',
+    'ingenieria-software',
+    'redes',
+    'bases-datos',
+    'teoria-sistemas',
+    'estadistica',
+    'administracion-financiera',
+    'mercadotecnia',
+    'talento-humano',
+    'operaciones',
+    'derecho-civil',
+    'derecho-penal',
+    'derecho-procesal',
+    'derecho-constitucional',
+    'produccion-audiovisual',
+    'comunicacion-estrategica',
+    'redaccion-periodistica',
+    'comunicacion-digital'
+  ] as const;
 
   alternarDescripcion(curso: Curso): void {
     this.cursoSeleccionado.update(id => id === curso.id ? null : curso.id);
