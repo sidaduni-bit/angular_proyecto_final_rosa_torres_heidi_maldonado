@@ -9,10 +9,6 @@
   "jornadas": ["Matutina", "Vespertina", "Nocturna", "Fin de semana"],
   "modalidades": ["Presencial", "Virtual", "Híbrida"],
   "estados": ["Borrador", "Registrada", "En revisión", "Aprobada", "Rechazada", "Cancelada"],
-  "periodos": [
-    {"id":"2026-2","nombre":"Segundo semestre 2026","activo":true},
-    {"id":"2027-1","nombre":"Primer semestre 2027","activo":false}
-  ],
   "cursos": [
     {"id":"WEB101","codigo":"PROG-WEB","nombre":"Programación Web","creditos":4,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Diseño y desarrollo de aplicaciones web interactivas. Se trabajan la estructura de páginas, estilos, programación del lado del cliente y la integración con servicios y datos, aplicando buenas prácticas de accesibilidad y experiencia de usuario."},
     {"id":"ADM101","codigo":"ARQ-SIS-I","nombre":"Arquitectura de Sistemas I","creditos":3,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Explora la organización interna de los sistemas de cómputo: procesador, memoria, representación de datos y entrada y salida. Analiza cómo estos componentes colaboran y afectan el rendimiento."},
