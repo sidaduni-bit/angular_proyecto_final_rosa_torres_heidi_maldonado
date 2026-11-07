@@ -1,0 +1,22 @@
+<div class="page-heading"><div><span class="eyebrow">CONTROL ACADÉMICO</span><h1>{{ idEditar ? 'Editar inscripción' : 'Nueva inscripción' }}</h1><p>Relaciona un estudiante con un período y uno o más cursos.</p></div><a routerLink="/inscripciones" class="btn btn-light"><mat-icon>arrow_back</mat-icon> Volver</a></div>
+<form [formGroup]="formulario" (ngSubmit)="guardar()" class="form-layout">
+  <section class="panel form-panel"><div class="section-title"><span class="section-number">01</span><div><h2>Datos de inscripción</h2><p>Selecciona el estudiante y el período académico.</p></div></div>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="full-field"><mat-label>Estudiante</mat-label><mat-select formControlName="estudianteId" (selectionChange)="cambiarEstudiante($event.value)"><mat-option value="">Selecciona un estudiante</mat-option>@for (e of estudiantes(); track e.id) {<mat-option [value]="e.id">{{ e.codigo }} · {{ e.nombres }} {{ e.apellidos }}</mat-option>}</mat-select>@if (formulario.controls.estudianteId.touched && formulario.controls.estudianteId.invalid) {<mat-error>Selecciona un estudiante.</mat-error>}</mat-form-field>
+      @if (estudiantes().length===0) {<small class="error full-field">Primero debes registrar un estudiante.</small>}
+      <mat-form-field appearance="outline"><mat-label>Período académico</mat-label><mat-select formControlName="periodoId">@for (p of catalogo.periodos; track p.id) {<mat-option [value]="p.id">{{ p.nombre }}</mat-option>}</mat-select>@if (formulario.controls.periodoId.touched && formulario.controls.periodoId.invalid) {<mat-error>Selecciona un período.</mat-error>}</mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Jornada</mat-label><mat-select formControlName="jornada">@for (jornada of catalogo.jornadas; track jornada) {<mat-option [value]="jornada">{{ jornada }}</mat-option>}</mat-select>@if (formulario.controls.jornada.touched && formulario.controls.jornada.invalid) {<mat-error>Selecciona una jornada.</mat-error>}</mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Modalidad</mat-label><mat-select formControlName="modalidad">@for (modalidad of catalogo.modalidades; track modalidad) {<mat-option [value]="modalidad">{{ modalidad }}</mat-option>}</mat-select>@if (formulario.controls.modalidad.touched && formulario.controls.modalidad.invalid) {<mat-error>Selecciona una modalidad.</mat-error>}</mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Estado</mat-label><mat-select formControlName="estado">@for (estado of catalogo.estados; track estado) {<mat-option [value]="estado">{{ estado }}</mat-option>}</mat-select>@if (formulario.controls.estado.touched && formulario.controls.estado.invalid) {<mat-error>Selecciona un estado.</mat-error>}</mat-form-field>
+    </div>
+  </section>
+  <section class="panel form-panel"><div class="section-title"><span class="section-number">02</span><div><h2>Selección de cursos</h2><p>Se muestran cursos correspondientes a la carrera del estudiante.</p></div></div>
+    @if (cursosReiniciados) {<div class="notice"><mat-icon>info</mat-icon><span>Se quitaron cursos que no corresponden a la carrera seleccionada. Revisa y elige los cursos nuevamente.</span></div>}
+    @if (!formulario.controls.estudianteId.value) {<p class="form-hint">Selecciona un estudiante para ver los cursos de su carrera.</p>}
+    @else if (cursosDisponibles.length===0) {<p class="form-hint">No hay cursos disponibles para la carrera de este estudiante.</p>}
+    <div class="course-options">@for (curso of cursosDisponibles; track curso.id) {<div class="course-option"><mat-checkbox [checked]="formulario.controls.cursoIds.value.includes(curso.id)" (change)="alternarCurso(curso.id, $event.checked)"><span><strong>{{ curso.nombre }}</strong><small>{{ curso.codigo }} · {{ curso.semestre }}</small></span></mat-checkbox><span class="course-tag">{{ curso.carreraId }}</span></div>}</div>
+    @if (formulario.controls.cursoIds.touched && formulario.controls.cursoIds.invalid) {<small class="error">Selecciona al menos un curso.</small>}
+  </section>
+  @if (mensajeError) {<div class="notice notice-error"><mat-icon>error</mat-icon>{{ mensajeError }}</div>}
+  <div class="form-actions"><a routerLink="/inscripciones" class="btn btn-light">Cancelar</a><button type="submit" class="btn btn-primary"><mat-icon>save</mat-icon> Guardar inscripción</button></div>
+</form>
