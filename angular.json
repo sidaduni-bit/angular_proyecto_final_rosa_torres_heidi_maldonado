@@ -17,24 +17,24 @@
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [{"glob": "**/*", "input": "public"}],
+            "assets": [{ "glob": "**/*", "input": "public" }],
             "styles": ["src/styles.css", "src/theme.css"],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "budgets": [{"type": "initial", "maximumWarning": "1mb", "maximumError": "2mb"}],
+              "budgets": [{ "type": "initial", "maximumWarning": "1mb", "maximumError": "2mb" }],
               "outputHashing": "all"
             },
-            "development": {"optimization": false, "extractLicenses": false, "sourceMap": true}
+            "development": { "optimization": false, "extractLicenses": false, "sourceMap": true }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {"buildTarget": "umes-sistema-inscripciones:build:production"},
-            "development": {"buildTarget": "umes-sistema-inscripciones:build:development"}
+            "production": { "buildTarget": "umes-sistema-inscripciones:build:production" },
+            "development": { "buildTarget": "umes-sistema-inscripciones:build:development" }
           },
           "defaultConfiguration": "development"
         }

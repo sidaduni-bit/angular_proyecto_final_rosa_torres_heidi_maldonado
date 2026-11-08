@@ -5,7 +5,7 @@ import { RegistroService } from '../../services/registro.service';
 @Component({
   standalone: true,
   imports: [MatIconModule],
-  templateUrl: './respaldos.html'
+  templateUrl: './respaldos.html',
 })
 export class Respaldos {
   private readonly registro = inject(RegistroService);
@@ -33,19 +33,30 @@ export class Respaldos {
       try {
         datos = JSON.parse(await archivo.text());
       } catch {
-        this.mostrar('No fue posible leer el archivo. Verifica que sea un JSON válido. Los datos actuales siguen intactos.', 'error');
+        this.mostrar(
+          'No fue posible leer el archivo. Verifica que sea un JSON válido. Los datos actuales siguen intactos.',
+          'error',
+        );
         return;
       }
       if (!this.registro.validarRespaldo(datos)) {
-        this.mostrar('El archivo contiene campos incompletos, valores no válidos o relaciones académicas inexistentes. No se modificaron los datos.', 'error');
+        this.mostrar(
+          'El archivo contiene campos incompletos, valores no válidos o relaciones académicas inexistentes. No se modificaron los datos.',
+          'error',
+        );
         return;
       }
-      const confirmar = confirm(`El respaldo contiene ${datos.estudiantes.length} estudiante(s) y ${datos.inscripciones.length} inscripción(es). Se reemplazarán todos los registros actuales. ¿Deseas continuar?`);
+      const confirmar = confirm(
+        `El respaldo contiene ${datos.estudiantes.length} estudiante(s) y ${datos.inscripciones.length} inscripción(es). Se reemplazarán todos los registros actuales. ¿Deseas continuar?`,
+      );
       if (!confirmar) return;
       try {
         this.registro.reemplazarDatos(datos);
       } catch {
-        this.mostrar('No fue posible guardar el respaldo en el almacenamiento local. Los registros en pantalla no fueron reemplazados.', 'error');
+        this.mostrar(
+          'No fue posible guardar el respaldo en el almacenamiento local. Los registros en pantalla no fueron reemplazados.',
+          'error',
+        );
         return;
       }
       this.mostrar('Datos importados correctamente.', 'success');

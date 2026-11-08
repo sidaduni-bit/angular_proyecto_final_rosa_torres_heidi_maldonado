@@ -1,5 +1,58 @@
-<div class="page-heading"><div><span class="eyebrow">SEGURIDAD DE LA INFORMACIÓN</span><h1>Respaldos</h1><p>Exporta tus registros o recupera información desde un archivo JSON.</p></div></div>
-<div class="backup-grid"><section class="panel backup-card"><span class="backup-icon lavender"><mat-icon>file_download</mat-icon></span><h2>Exportar datos</h2><p>Descarga un único archivo JSON con todos los estudiantes e inscripciones guardados. El respaldo conserva las relaciones entre los registros.</p><ul><li>Incluye versión del formato.</li><li>Incluye estudiantes e inscripciones.</li><li>No incluye catálogos estáticos.</li></ul><button class="btn btn-primary" type="button" (click)="exportar()"><mat-icon>download</mat-icon> Exportar datos</button></section>
-<section class="panel backup-card"><span class="backup-icon mint"><mat-icon>file_upload</mat-icon></span><h2>Importar datos</h2><p>Selecciona un respaldo JSON exportado previamente. Se validará antes de reemplazar la información actual.</p><ul><li>Comprueba sintaxis y estructura.</li><li>Verifica relaciones con estudiantes.</li><li>Solicita confirmación antes de reemplazar.</li></ul><label class="btn btn-outline file-button"><mat-icon>upload_file</mat-icon> Seleccionar archivo JSON<input type="file" accept=".json,application/json" (change)="importar($event)"></label></section></div>
-@if (mensaje) {<div class="notice" [class.notice-error]="tipoMensaje==='error'"><mat-icon>{{ tipoMensaje==='success' ? 'check_circle' : 'error' }}</mat-icon>{{ mensaje }}</div>}
-<div class="notice"><mat-icon>info</mat-icon><span><strong>Importante:</strong> la importación reemplaza los registros actuales únicamente después de validar completamente el archivo y recibir tu confirmación. Si el archivo es inválido, la información existente se conserva.</span></div>
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">SEGURIDAD DE LA INFORMACIÓN</span>
+    <h1>Respaldos</h1>
+    <p>Exporta tus registros o recupera información desde un archivo JSON.</p>
+  </div>
+</div>
+<div class="backup-grid">
+  <section class="panel backup-card">
+    <span class="backup-icon lavender"><mat-icon>file_download</mat-icon></span>
+    <h2>Exportar datos</h2>
+    <p>
+      Descarga un único archivo JSON con todos los estudiantes e inscripciones guardados. El
+      respaldo conserva las relaciones entre los registros.
+    </p>
+    <ul>
+      <li>Incluye versión del formato.</li>
+      <li>Incluye estudiantes e inscripciones.</li>
+      <li>No incluye catálogos estáticos.</li>
+    </ul>
+    <button class="btn btn-primary" type="button" (click)="exportar()">
+      <mat-icon>download</mat-icon> Exportar datos
+    </button>
+  </section>
+  <section class="panel backup-card">
+    <span class="backup-icon mint"><mat-icon>file_upload</mat-icon></span>
+    <h2>Importar datos</h2>
+    <p>
+      Selecciona un respaldo JSON exportado previamente. Se validará antes de reemplazar la
+      información actual.
+    </p>
+    <ul>
+      <li>Comprueba sintaxis y estructura.</li>
+      <li>Verifica relaciones con estudiantes.</li>
+      <li>Solicita confirmación antes de reemplazar.</li>
+    </ul>
+    <label class="btn btn-outline file-button"
+      ><mat-icon>upload_file</mat-icon> Seleccionar archivo JSON<input
+        type="file"
+        accept=".json,application/json"
+        (change)="importar($event)"
+    /></label>
+  </section>
+</div>
+@if (mensaje) {
+  <div class="notice" [class.notice-error]="tipoMensaje === 'error'">
+    <mat-icon>{{ tipoMensaje === 'success' ? 'check_circle' : 'error' }}</mat-icon
+    >{{ mensaje }}
+  </div>
+}
+<div class="notice">
+  <mat-icon>info</mat-icon
+  ><span
+    ><strong>Importante:</strong> la importación reemplaza los registros actuales únicamente después
+    de validar completamente el archivo y recibir tu confirmación. Si el archivo es inválido, la
+    información existente se conserva.</span
+  >
+</div>

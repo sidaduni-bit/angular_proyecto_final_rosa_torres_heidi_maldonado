@@ -1,13 +1,71 @@
-<div class="page-heading"><div><span class="eyebrow">DIRECTORIO ACADÉMICO</span><h1>Estudiantes</h1><p>Consulta y administra los registros estudiantiles.</p></div><a routerLink="/estudiantes/nuevo" class="btn btn-primary"><mat-icon>add</mat-icon> Registrar estudiante</a></div>
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">DIRECTORIO ACADÉMICO</span>
+    <h1>Estudiantes</h1>
+    <p>Consulta y administra los registros estudiantiles.</p>
+  </div>
+  <a routerLink="/estudiantes/nuevo" class="btn btn-primary"
+    ><mat-icon>add</mat-icon> Registrar estudiante</a
+  >
+</div>
 <section class="panel">
-  <div class="toolbar"><div class="search-box"><mat-icon>search</mat-icon><input #search type="search" placeholder="Buscar por código, nombre o correo..." (input)="busqueda.set(search.value)"></div><span class="result-count">{{ lista().length }} resultado(s)</span></div>
+  <div class="toolbar">
+    <div class="search-box">
+      <mat-icon>search</mat-icon
+      ><input
+        #search
+        type="search"
+        placeholder="Buscar por código, nombre o correo..."
+        (input)="busqueda.set(search.value)"
+      />
+    </div>
+    <span class="result-count">{{ lista().length }} resultado(s)</span>
+  </div>
   <div class="table-wrap">
-    <table><thead><tr><th>CÓDIGO</th><th>ESTUDIANTE</th><th>CORREO</th><th>CARRERA</th><th>CONTACTOS</th><th>ACCIONES</th></tr></thead>
+    <table>
+      <thead>
+        <tr>
+          <th>CÓDIGO</th>
+          <th>ESTUDIANTE</th>
+          <th>CORREO</th>
+          <th>CARRERA</th>
+          <th>CONTACTOS</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
       <tbody>
         @for (estudiante of lista(); track estudiante.id) {
-          <tr><td><span class="code-pill">{{ estudiante.codigo }}</span></td><td><strong>{{ estudiante.nombres }} {{ estudiante.apellidos }}</strong><small class="cell-sub">{{ estudiante.genero }}</small></td><td>{{ estudiante.correo }}</td><td>{{ estudiante.carrera }}</td><td>{{ estudiante.contactos.length }}</td><td class="actions"><a [routerLink]="['/estudiantes/editar', estudiante.id]" title="Editar"><mat-icon>edit</mat-icon></a><button type="button" (click)="eliminar(estudiante.id, estudiante.nombres)" title="Eliminar"><mat-icon>delete_outline</mat-icon></button></td></tr>
+          <tr>
+            <td>
+              <span class="code-pill">{{ estudiante.codigo }}</span>
+            </td>
+            <td>
+              <strong>{{ estudiante.nombres }} {{ estudiante.apellidos }}</strong
+              ><small class="cell-sub">{{ estudiante.genero }}</small>
+            </td>
+            <td>{{ estudiante.correo }}</td>
+            <td>{{ estudiante.carrera }}</td>
+            <td>{{ estudiante.contactos.length }}</td>
+            <td class="actions">
+              <a [routerLink]="['/estudiantes/editar', estudiante.id]" title="Editar"
+                ><mat-icon>edit</mat-icon></a
+              ><button
+                type="button"
+                (click)="eliminar(estudiante.id, estudiante.nombres)"
+                title="Eliminar"
+              >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </td>
+          </tr>
         } @empty {
-          <tr><td colspan="6" class="empty-cell"><mat-icon>person_search</mat-icon><strong>No hay estudiantes registrados</strong><span>Registra el primer estudiante para comenzar.</span><a routerLink="/estudiantes/nuevo" class="text-link">Registrar estudiante</a></td></tr>
+          <tr>
+            <td colspan="6" class="empty-cell">
+              <mat-icon>person_search</mat-icon><strong>No hay estudiantes registrados</strong
+              ><span>Registra el primer estudiante para comenzar.</span
+              ><a routerLink="/estudiantes/nuevo" class="text-link">Registrar estudiante</a>
+            </td>
+          </tr>
         }
       </tbody>
     </table>

@@ -41,19 +41,15 @@ export class RegistroService {
   private readonly catalogo = inject(CatalogosService).obtener();
 
   // Signals mantienen los datos sincronizados con las pantallas de Angular.
-  readonly estudiantes = signal<Estudiante[]>(
-    this.leer<Estudiante[]>(CLAVE_ESTUDIANTES, [])
-  );
-  readonly inscripciones = signal<Inscripcion[]>(
-    this.leer<Inscripcion[]>(CLAVE_INSCRIPCIONES, [])
-  );
+  readonly estudiantes = signal<Estudiante[]>(this.leer<Estudiante[]>(CLAVE_ESTUDIANTES, []));
+  readonly inscripciones = signal<Inscripcion[]>(this.leer<Inscripcion[]>(CLAVE_INSCRIPCIONES, []));
 
   // Lee una colección guardada. Si no hay datos o el JSON no se puede leer,
   // inicia con el valor predeterminado para esa colección.
   private leer<T>(clave: string, valorInicial: T): T {
     try {
       const contenido = localStorage.getItem(clave);
-      return contenido ? JSON.parse(contenido) as T : valorInicial;
+      return contenido ? (JSON.parse(contenido) as T) : valorInicial;
     } catch {
       return valorInicial;
     }
@@ -68,12 +64,12 @@ export class RegistroService {
   // Agrega un estudiante nuevo o actualiza el que ya tenga el mismo ID.
   guardarEstudiante(estudiante: Estudiante): void {
     const lista = this.estudiantes();
-    const existe = lista.some(item => item.id === estudiante.id);
+    const existe = lista.some((item) => item.id === estudiante.id);
 
     this.estudiantes.set(
       existe
-        ? lista.map(item => item.id === estudiante.id ? estudiante : item)
-        : [...lista, estudiante]
+        ? lista.map((item) => (item.id === estudiante.id ? estudiante : item))
+        : [...lista, estudiante],
     );
     this.guardar();
   }
@@ -81,12 +77,12 @@ export class RegistroService {
   // Evita eliminar estudiantes que todavía tienen inscripciones no canceladas.
   eliminarEstudiante(id: string): boolean {
     const tieneInscripcionesActivas = this.inscripciones().some(
-      item => item.estudianteId === id && item.estado !== 'Cancelada'
+      (item) => item.estudianteId === id && item.estado !== 'Cancelada',
     );
 
     if (tieneInscripcionesActivas) return false;
 
-    this.estudiantes.update(lista => lista.filter(item => item.id !== id));
+    this.estudiantes.update((lista) => lista.filter((item) => item.id !== id));
     this.guardar();
     return true;
   }
@@ -94,19 +90,19 @@ export class RegistroService {
   // Agrega una inscripción nueva o actualiza la que ya tenga el mismo ID.
   guardarInscripcion(inscripcion: Inscripcion): void {
     const lista = this.inscripciones();
-    const existe = lista.some(item => item.id === inscripcion.id);
+    const existe = lista.some((item) => item.id === inscripcion.id);
 
     this.inscripciones.set(
       existe
-        ? lista.map(item => item.id === inscripcion.id ? inscripcion : item)
-        : [...lista, inscripcion]
+        ? lista.map((item) => (item.id === inscripcion.id ? inscripcion : item))
+        : [...lista, inscripcion],
     );
     this.guardar();
   }
 
   // Elimina una inscripción y guarda el cambio en el almacenamiento local.
   eliminarInscripcion(id: string): void {
-    this.inscripciones.update(lista => lista.filter(item => item.id !== id));
+    this.inscripciones.update((lista) => lista.filter((item) => item.id !== id));
     this.guardar();
   }
 
@@ -117,11 +113,11 @@ export class RegistroService {
       version: 1,
       exportadoEn: new Date().toISOString(),
       estudiantes: this.estudiantes(),
-      inscripciones: this.inscripciones().map(inscripcion => ({
+      inscripciones: this.inscripciones().map((inscripcion) => ({
         ...inscripcion,
         jornada: inscripcion.jornada ?? this.catalogo.jornadas[0],
-        modalidad: inscripcion.modalidad ?? this.catalogo.modalidades[0]
-      }))
+        modalidad: inscripcion.modalidad ?? this.catalogo.modalidades[0],
+      })),
     };
   }
 
@@ -183,7 +179,7 @@ export class RegistroService {
   private esEstudianteValido(
     valor: unknown,
     carrerasPorEstudiante: Map<string, string>,
-    codigosEstudiantes: Set<string>
+    codigosEstudiantes: Set<string>,
   ): boolean {
     if (
       !this.esObjeto(valor) ||
@@ -205,7 +201,7 @@ export class RegistroService {
       valor.direccion.trim().length < 5 ||
       valor.direccion.trim().length > 160 ||
       typeof valor.carrera !== 'string' ||
-      !this.catalogo.carreras.some(carrera => carrera.nombre === valor.carrera) ||
+      !this.catalogo.carreras.some((carrera) => carrera.nombre === valor.carrera) ||
       !this.esFecha(valor.fechaRegistro) ||
       !Array.isArray(valor.contactos) ||
       valor.contactos.length === 0
@@ -222,7 +218,7 @@ export class RegistroService {
       if (!this.esContactoValido(contacto)) return false;
     }
 
-    const carrera = this.catalogo.carreras.find(item => item.nombre === valor.carrera);
+    const carrera = this.catalogo.carreras.find((item) => item.nombre === valor.carrera);
     if (!carrera) return false;
 
     carrerasPorEstudiante.set(valor.id, carrera.id);
@@ -236,7 +232,7 @@ export class RegistroService {
       this.esObjeto(contacto) &&
       this.esTexto(contacto.numero) &&
       /^[0-9+() -]{8,20}$/.test(contacto.numero) &&
-      contacto.numero.replace(/\D/g, '').length >= 8 &&
+      contacto.numero.replace(/\D/g, '').length === 8 &&
       typeof contacto.tipo === 'string' &&
       ['Móvil', 'Casa', 'Trabajo', 'Otro'].includes(contacto.tipo) &&
       typeof contacto.activo === 'boolean'
@@ -247,7 +243,7 @@ export class RegistroService {
   private esInscripcionValida(
     valor: unknown,
     carrerasPorEstudiante: Map<string, string>,
-    idsInscripciones: Set<string>
+    idsInscripciones: Set<string>,
   ): boolean {
     if (
       !this.esObjeto(valor) ||
@@ -258,14 +254,11 @@ export class RegistroService {
       valor.cursoIds.length === 0 ||
       typeof valor.estado !== 'string' ||
       !this.catalogo.estados.includes(valor.estado) ||
-      (
-        valor.jornada !== undefined &&
-        (typeof valor.jornada !== 'string' || !this.catalogo.jornadas.includes(valor.jornada))
-      ) ||
-      (
-        valor.modalidad !== undefined &&
-        (typeof valor.modalidad !== 'string' || !this.catalogo.modalidades.includes(valor.modalidad))
-      ) ||
+      (valor.jornada !== undefined &&
+        (typeof valor.jornada !== 'string' || !this.catalogo.jornadas.includes(valor.jornada))) ||
+      (valor.modalidad !== undefined &&
+        (typeof valor.modalidad !== 'string' ||
+          !this.catalogo.modalidades.includes(valor.modalidad))) ||
       !this.esFecha(valor.fecha)
     ) {
       return false;
@@ -274,7 +267,7 @@ export class RegistroService {
     if (
       idsInscripciones.has(valor.id) ||
       !carrerasPorEstudiante.has(valor.estudianteId) ||
-      !this.catalogo.periodos.some(periodo => periodo.id === valor.periodoId)
+      !this.catalogo.periodos.some((periodo) => periodo.id === valor.periodoId)
     ) {
       return false;
     }
@@ -282,9 +275,10 @@ export class RegistroService {
     const cursosInscripcion = new Set<string>();
     const carreraEstudiante = carrerasPorEstudiante.get(valor.estudianteId);
     for (const cursoId of valor.cursoIds) {
-      const curso = typeof cursoId === 'string'
-        ? this.catalogo.cursos.find(item => item.id === cursoId)
-        : undefined;
+      const curso =
+        typeof cursoId === 'string'
+          ? this.catalogo.cursos.find((item) => item.id === cursoId)
+          : undefined;
       if (
         typeof cursoId !== 'string' ||
         cursosInscripcion.has(cursoId) ||
@@ -344,7 +338,7 @@ export class RegistroService {
     const fechaActual = [
       hoy.getFullYear(),
       String(hoy.getMonth() + 1).padStart(2, '0'),
-      String(hoy.getDate()).padStart(2, '0')
+      String(hoy.getDate()).padStart(2, '0'),
     ].join('-');
 
     return valor <= fechaActual;

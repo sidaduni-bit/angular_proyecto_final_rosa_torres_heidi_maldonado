@@ -17,5 +17,5 @@ export const routes: Routes = [
   { path: 'inscripciones/editar/:id', component: InscripcionForm },
   { path: 'cursos', component: CatalogoCursos },
   { path: 'respaldos', component: Respaldos },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];

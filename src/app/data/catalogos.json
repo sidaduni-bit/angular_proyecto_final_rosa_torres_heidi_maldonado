@@ -1,33 +1,185 @@
 {
   "generos": ["Femenino", "Masculino", "Otro", "Prefiero no indicar"],
   "carreras": [
-    {"id":"ING","nombre":"Ingeniería"},
-    {"id":"ADM","nombre":"Administración de Empresas"},
-    {"id":"DER","nombre":"Ciencias Jurídicas y Sociales"},
-    {"id":"COM","nombre":"Comunicación"}
+    { "id": "ING", "nombre": "Ingeniería" },
+    { "id": "ADM", "nombre": "Administración de Empresas" },
+    { "id": "DER", "nombre": "Ciencias Jurídicas y Sociales" },
+    { "id": "COM", "nombre": "Comunicación" }
   ],
   "jornadas": ["Matutina", "Vespertina", "Nocturna", "Fin de semana"],
   "modalidades": ["Presencial", "Virtual", "Híbrida"],
   "estados": ["Borrador", "Registrada", "En revisión", "Aprobada", "Rechazada", "Cancelada"],
   "cursos": [
-    {"id":"WEB101","codigo":"PROG-WEB","nombre":"Programación Web","creditos":4,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Diseño y desarrollo de aplicaciones web interactivas. Se trabajan la estructura de páginas, estilos, programación del lado del cliente y la integración con servicios y datos, aplicando buenas prácticas de accesibilidad y experiencia de usuario."},
-    {"id":"ADM101","codigo":"ARQ-SIS-I","nombre":"Arquitectura de Sistemas I","creditos":3,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Explora la organización interna de los sistemas de cómputo: procesador, memoria, representación de datos y entrada y salida. Analiza cómo estos componentes colaboran y afectan el rendimiento."},
-    {"id":"CON101","codigo":"ING-SW-I","nombre":"Ingeniería de Software I","creditos":4,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Introduce métodos para desarrollar software de manera organizada, desde el levantamiento de requisitos y el modelado hasta el diseño, las pruebas y la documentación de soluciones."},
-    {"id":"DER101","codigo":"RED-III","nombre":"Redes III","creditos":4,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Profundiza en el diseño, configuración y administración de redes avanzadas. Aborda protocolos de enrutamiento, redes empresariales, servicios de infraestructura, seguridad y diagnóstico para mantener comunicaciones confiables."},
-    {"id":"BD101","codigo":"BD-II","nombre":"Bases de Datos II","creditos":4,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Profundiza en el diseño y administración de bases de datos relacionales. Incluye consultas avanzadas, normalización, transacciones, integridad de datos y optimización para construir soluciones confiables."},
-    {"id":"MAT201","codigo":"TEO-SIS","nombre":"Teoría de Sistemas","creditos":5,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Estudia los sistemas como conjuntos de elementos interrelacionados. Analiza sus componentes, límites, entorno, entradas, procesos y resultados, así como la retroalimentación y el pensamiento sistémico para comprender problemas complejos."},
-    {"id":"COM101","codigo":"EST-101","nombre":"Estadística","creditos":3,"carreraId":"ING","semestre":"Sexto semestre","descripcion":"Desarrolla herramientas para organizar, resumir e interpretar datos. Aborda probabilidad, distribuciones, muestreo e inferencia para fundamentar conclusiones y decisiones."},
-    {"id":"ADM201","codigo":"ADM-FIN-III","nombre":"Administración Financiera","creditos":4,"carreraId":"ADM","semestre":"Sexto semestre","descripcion":"Analiza decisiones de inversión, financiamiento y administración del capital de trabajo. Utiliza presupuestos, indicadores financieros y herramientas de evaluación para apoyar la gestión empresarial."},
-    {"id":"ADM202","codigo":"ADM-MER-II","nombre":"Mercadotecnia Estratégica","creditos":4,"carreraId":"ADM","semestre":"Sexto semestre","descripcion":"Estudia el análisis de mercados, la segmentación y el posicionamiento de marcas. Desarrolla estrategias de producto, precio, distribución y comunicación orientadas a objetivos empresariales."},
-    {"id":"ADM203","codigo":"ADM-RRHH-II","nombre":"Gestión del Talento Humano","creditos":3,"carreraId":"ADM","semestre":"Sexto semestre","descripcion":"Aborda la planificación del personal, selección, capacitación, evaluación del desempeño y desarrollo organizacional, con atención al bienestar y a las metas de la organización."},
-    {"id":"ADM204","codigo":"ADM-OP-I","nombre":"Gestión de Operaciones","creditos":4,"carreraId":"ADM","semestre":"Sexto semestre","descripcion":"Examina la planificación y mejora de procesos de producción y servicios. Incluye capacidad, calidad, inventarios y uso eficiente de recursos para elevar el desempeño operativo."},
-    {"id":"DER201","codigo":"DER-CIV-III","nombre":"Derecho Civil III","creditos":4,"carreraId":"DER","semestre":"Sexto semestre","descripcion":"Profundiza en instituciones del derecho civil relacionadas con las obligaciones y los contratos, su interpretación, efectos y formas de cumplimiento conforme al marco jurídico aplicable."},
-    {"id":"DER202","codigo":"DER-PEN-II","nombre":"Derecho Penal II","creditos":4,"carreraId":"DER","semestre":"Sexto semestre","descripcion":"Estudia la aplicación de la teoría del delito a figuras penales específicas, sus elementos y consecuencias, mediante el análisis de casos y de la legislación vigente."},
-    {"id":"DER203","codigo":"DER-PRO-I","nombre":"Derecho Procesal","creditos":4,"carreraId":"DER","semestre":"Sexto semestre","descripcion":"Introduce los principios, sujetos y etapas del proceso judicial. Analiza la competencia, los actos procesales y las garantías que orientan la resolución de controversias."},
-    {"id":"DER204","codigo":"DER-CON-II","nombre":"Derecho Constitucional II","creditos":3,"carreraId":"DER","semestre":"Sexto semestre","descripcion":"Analiza la organización del Estado, las funciones de sus instituciones y los mecanismos de protección constitucional, relacionando sus principios con situaciones jurídicas concretas."},
-    {"id":"COM201","codigo":"COM-PROD-AUD","nombre":"Producción Audiovisual","creditos":4,"carreraId":"COM","semestre":"Sexto semestre","descripcion":"Desarrolla proyectos audiovisuales desde la idea y el guion hasta la producción y edición. Incluye lenguaje visual, planificación de rodaje y criterios técnicos para distintos medios."},
-    {"id":"COM202","codigo":"COM-ESTRAT","nombre":"Comunicación Estratégica","creditos":4,"carreraId":"COM","semestre":"Sexto semestre","descripcion":"Diseña planes de comunicación para organizaciones y marcas. Trabaja el diagnóstico de públicos, los mensajes, los canales y la evaluación de resultados."},
-    {"id":"COM203","codigo":"COM-PER-I","nombre":"Redacción Periodística","creditos":3,"carreraId":"COM","semestre":"Sexto semestre","descripcion":"Practica la investigación, verificación y escritura de contenidos informativos en distintos formatos. Aborda géneros periodísticos, fuentes, claridad y responsabilidad editorial."},
-    {"id":"COM204","codigo":"COM-DIG-II","nombre":"Comunicación Digital","creditos":4,"carreraId":"COM","semestre":"Sexto semestre","descripcion":"Explora la planificación de contenidos para plataformas digitales, la interacción con audiencias y el análisis de métricas para mejorar la presencia y el alcance de proyectos comunicacionales."}
+    {
+      "id": "WEB101",
+      "codigo": "PROG-WEB",
+      "nombre": "Programación Web",
+      "creditos": 4,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Diseño y desarrollo de aplicaciones web interactivas. Se trabajan la estructura de páginas, estilos, programación del lado del cliente y la integración con servicios y datos, aplicando buenas prácticas de accesibilidad y experiencia de usuario."
+    },
+    {
+      "id": "ADM101",
+      "codigo": "ARQ-SIS-I",
+      "nombre": "Arquitectura de Sistemas I",
+      "creditos": 3,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Explora la organización interna de los sistemas de cómputo: procesador, memoria, representación de datos y entrada y salida. Analiza cómo estos componentes colaboran y afectan el rendimiento."
+    },
+    {
+      "id": "CON101",
+      "codigo": "ING-SW-I",
+      "nombre": "Ingeniería de Software I",
+      "creditos": 4,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Introduce métodos para desarrollar software de manera organizada, desde el levantamiento de requisitos y el modelado hasta el diseño, las pruebas y la documentación de soluciones."
+    },
+    {
+      "id": "DER101",
+      "codigo": "RED-III",
+      "nombre": "Redes III",
+      "creditos": 4,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Profundiza en el diseño, configuración y administración de redes avanzadas. Aborda protocolos de enrutamiento, redes empresariales, servicios de infraestructura, seguridad y diagnóstico para mantener comunicaciones confiables."
+    },
+    {
+      "id": "BD101",
+      "codigo": "BD-II",
+      "nombre": "Bases de Datos II",
+      "creditos": 4,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Profundiza en el diseño y administración de bases de datos relacionales. Incluye consultas avanzadas, normalización, transacciones, integridad de datos y optimización para construir soluciones confiables."
+    },
+    {
+      "id": "MAT201",
+      "codigo": "TEO-SIS",
+      "nombre": "Teoría de Sistemas",
+      "creditos": 5,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Estudia los sistemas como conjuntos de elementos interrelacionados. Analiza sus componentes, límites, entorno, entradas, procesos y resultados, así como la retroalimentación y el pensamiento sistémico para comprender problemas complejos."
+    },
+    {
+      "id": "COM101",
+      "codigo": "EST-101",
+      "nombre": "Estadística",
+      "creditos": 3,
+      "carreraId": "ING",
+      "semestre": "Sexto semestre",
+      "descripcion": "Desarrolla herramientas para organizar, resumir e interpretar datos. Aborda probabilidad, distribuciones, muestreo e inferencia para fundamentar conclusiones y decisiones."
+    },
+    {
+      "id": "ADM201",
+      "codigo": "ADM-FIN-III",
+      "nombre": "Administración Financiera",
+      "creditos": 4,
+      "carreraId": "ADM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Analiza decisiones de inversión, financiamiento y administración del capital de trabajo. Utiliza presupuestos, indicadores financieros y herramientas de evaluación para apoyar la gestión empresarial."
+    },
+    {
+      "id": "ADM202",
+      "codigo": "ADM-MER-II",
+      "nombre": "Mercadotecnia Estratégica",
+      "creditos": 4,
+      "carreraId": "ADM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Estudia el análisis de mercados, la segmentación y el posicionamiento de marcas. Desarrolla estrategias de producto, precio, distribución y comunicación orientadas a objetivos empresariales."
+    },
+    {
+      "id": "ADM203",
+      "codigo": "ADM-RRHH-II",
+      "nombre": "Gestión del Talento Humano",
+      "creditos": 3,
+      "carreraId": "ADM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Aborda la planificación del personal, selección, capacitación, evaluación del desempeño y desarrollo organizacional, con atención al bienestar y a las metas de la organización."
+    },
+    {
+      "id": "ADM204",
+      "codigo": "ADM-OP-I",
+      "nombre": "Gestión de Operaciones",
+      "creditos": 4,
+      "carreraId": "ADM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Examina la planificación y mejora de procesos de producción y servicios. Incluye capacidad, calidad, inventarios y uso eficiente de recursos para elevar el desempeño operativo."
+    },
+    {
+      "id": "DER201",
+      "codigo": "DER-CIV-III",
+      "nombre": "Derecho Civil III",
+      "creditos": 4,
+      "carreraId": "DER",
+      "semestre": "Sexto semestre",
+      "descripcion": "Profundiza en instituciones del derecho civil relacionadas con las obligaciones y los contratos, su interpretación, efectos y formas de cumplimiento conforme al marco jurídico aplicable."
+    },
+    {
+      "id": "DER202",
+      "codigo": "DER-PEN-II",
+      "nombre": "Derecho Penal II",
+      "creditos": 4,
+      "carreraId": "DER",
+      "semestre": "Sexto semestre",
+      "descripcion": "Estudia la aplicación de la teoría del delito a figuras penales específicas, sus elementos y consecuencias, mediante el análisis de casos y de la legislación vigente."
+    },
+    {
+      "id": "DER203",
+      "codigo": "DER-PRO-I",
+      "nombre": "Derecho Procesal",
+      "creditos": 4,
+      "carreraId": "DER",
+      "semestre": "Sexto semestre",
+      "descripcion": "Introduce los principios, sujetos y etapas del proceso judicial. Analiza la competencia, los actos procesales y las garantías que orientan la resolución de controversias."
+    },
+    {
+      "id": "DER204",
+      "codigo": "DER-CON-II",
+      "nombre": "Derecho Constitucional II",
+      "creditos": 3,
+      "carreraId": "DER",
+      "semestre": "Sexto semestre",
+      "descripcion": "Analiza la organización del Estado, las funciones de sus instituciones y los mecanismos de protección constitucional, relacionando sus principios con situaciones jurídicas concretas."
+    },
+    {
+      "id": "COM201",
+      "codigo": "COM-PROD-AUD",
+      "nombre": "Producción Audiovisual",
+      "creditos": 4,
+      "carreraId": "COM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Desarrolla proyectos audiovisuales desde la idea y el guion hasta la producción y edición. Incluye lenguaje visual, planificación de rodaje y criterios técnicos para distintos medios."
+    },
+    {
+      "id": "COM202",
+      "codigo": "COM-ESTRAT",
+      "nombre": "Comunicación Estratégica",
+      "creditos": 4,
+      "carreraId": "COM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Diseña planes de comunicación para organizaciones y marcas. Trabaja el diagnóstico de públicos, los mensajes, los canales y la evaluación de resultados."
+    },
+    {
+      "id": "COM203",
+      "codigo": "COM-PER-I",
+      "nombre": "Redacción Periodística",
+      "creditos": 3,
+      "carreraId": "COM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Practica la investigación, verificación y escritura de contenidos informativos en distintos formatos. Aborda géneros periodísticos, fuentes, claridad y responsabilidad editorial."
+    },
+    {
+      "id": "COM204",
+      "codigo": "COM-DIG-II",
+      "nombre": "Comunicación Digital",
+      "creditos": 4,
+      "carreraId": "COM",
+      "semestre": "Sexto semestre",
+      "descripcion": "Explora la planificación de contenidos para plataformas digitales, la interacción con audiencias y el análisis de métricas para mejorar la presencia y el alcance de proyectos comunicacionales."
+    }
   ]
 }

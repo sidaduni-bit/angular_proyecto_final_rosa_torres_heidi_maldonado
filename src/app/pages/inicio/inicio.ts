@@ -7,7 +7,7 @@ import { CatalogosService } from '../../services/catalogos.service';
 @Component({
   standalone: true,
   imports: [RouterLink, MatIconModule],
-  templateUrl: './inicio.html'
+  templateUrl: './inicio.html',
 })
 export class Inicio {
   private readonly registro = inject(RegistroService);

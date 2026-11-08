@@ -6,7 +6,7 @@ import { Curso } from '../../models/academic.models';
 @Component({
   standalone: true,
   imports: [MatIconModule],
-  templateUrl: './catalogo-cursos.html'
+  templateUrl: './catalogo-cursos.html',
 })
 export class CatalogoCursos {
   private readonly catalogos = inject(CatalogosService).obtener();
@@ -32,14 +32,14 @@ export class CatalogoCursos {
     'produccion-audiovisual',
     'comunicacion-estrategica',
     'redaccion-periodistica',
-    'comunicacion-digital'
+    'comunicacion-digital',
   ] as const;
 
   alternarDescripcion(curso: Curso): void {
-    this.cursoSeleccionado.update(id => id === curso.id ? null : curso.id);
+    this.cursoSeleccionado.update((id) => (id === curso.id ? null : curso.id));
   }
 
   nombreCarrera(id: string): string {
-    return this.carreras.find(c => c.id === id)?.nombre ?? id;
+    return this.carreras.find((c) => c.id === id)?.nombre ?? id;
   }
 }

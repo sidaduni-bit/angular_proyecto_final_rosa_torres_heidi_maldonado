@@ -11,8 +11,15 @@ import { Curso, Inscripcion } from '../../models/academic.models';
 
 @Component({
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, MatIconModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule],
-  templateUrl: './inscripcion-form.html'
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MatIconModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
+  ],
+  templateUrl: './inscripcion-form.html',
 })
 export class InscripcionForm {
   private readonly fb = inject(FormBuilder);
@@ -27,16 +34,16 @@ export class InscripcionForm {
   mensajeError = '';
   readonly formulario = this.fb.nonNullable.group({
     estudianteId: ['', Validators.required],
-    periodoId: [this.catalogo.periodos.find(p => p.activo)?.id ?? '', Validators.required],
+    periodoId: [this.catalogo.periodos.find((p) => p.activo)?.id ?? '', Validators.required],
     jornada: [this.catalogo.jornadas[0] ?? '', Validators.required],
     modalidad: [this.catalogo.modalidades[0] ?? '', Validators.required],
     cursoIds: this.fb.nonNullable.control<string[]>([], Validators.required),
-    estado: ['Registrada' as Inscripcion['estado'], Validators.required]
+    estado: ['Registrada' as Inscripcion['estado'], Validators.required],
   });
 
   constructor() {
     if (this.idEditar) {
-      const item = this.registro.inscripciones().find(i => i.id === this.idEditar);
+      const item = this.registro.inscripciones().find((i) => i.id === this.idEditar);
       if (item) this.formulario.patchValue(item);
     }
     this.aplicarCursosDisponibles(this.formulario.controls.estudianteId.value);
@@ -52,15 +59,17 @@ export class InscripcionForm {
   }
 
   private cursosParaEstudiante(estudianteId: string): Curso[] {
-    const estudiante = this.estudiantes().find(item => item.id === estudianteId);
-    const carreraId = this.catalogo.carreras.find(carrera => carrera.nombre === estudiante?.carrera)?.id;
-    return this.catalogo.cursos.filter(curso => curso.carreraId === carreraId);
+    const estudiante = this.estudiantes().find((item) => item.id === estudianteId);
+    const carreraId = this.catalogo.carreras.find(
+      (carrera) => carrera.nombre === estudiante?.carrera,
+    )?.id;
+    return this.catalogo.cursos.filter((curso) => curso.carreraId === carreraId);
   }
 
   private aplicarCursosDisponibles(estudianteId: string): void {
-    const disponibles = new Set(this.cursosParaEstudiante(estudianteId).map(curso => curso.id));
+    const disponibles = new Set(this.cursosParaEstudiante(estudianteId).map((curso) => curso.id));
     const seleccionados = this.formulario.controls.cursoIds.value;
-    const compatibles = seleccionados.filter(id => disponibles.has(id));
+    const compatibles = seleccionados.filter((id) => disponibles.has(id));
     this.cursosReiniciados = compatibles.length !== seleccionados.length;
     if (this.cursosReiniciados) {
       this.formulario.controls.cursoIds.setValue(compatibles);
@@ -69,9 +78,9 @@ export class InscripcionForm {
 
   alternarCurso(id: string, marcado: boolean): void {
     const seleccionados = this.formulario.controls.cursoIds.value;
-    this.formulario.controls.cursoIds.setValue(marcado
-      ? [...new Set([...seleccionados, id])]
-      : seleccionados.filter(x => x !== id));
+    this.formulario.controls.cursoIds.setValue(
+      marcado ? [...new Set([...seleccionados, id])] : seleccionados.filter((x) => x !== id),
+    );
     this.formulario.controls.cursoIds.markAsTouched();
   }
 
@@ -80,26 +89,32 @@ export class InscripcionForm {
     this.formulario.markAllAsTouched();
     if (this.formulario.invalid) return;
     const valor = this.formulario.getRawValue();
-    if (!this.registro.estudiantes().some(e => e.id === valor.estudianteId)) {
+    if (!this.registro.estudiantes().some((e) => e.id === valor.estudianteId)) {
       this.mensajeError = 'Selecciona un estudiante válido.';
       return;
     }
-    if (!this.catalogo.periodos.some(periodo => periodo.id === valor.periodoId) ||
-        !this.catalogo.jornadas.includes(valor.jornada) ||
-        !this.catalogo.modalidades.includes(valor.modalidad) ||
-        !this.catalogo.estados.includes(valor.estado)) {
-      this.mensajeError = 'Selecciona un período, jornada, modalidad y estado válidos del catálogo.';
+    if (
+      !this.catalogo.periodos.some((periodo) => periodo.id === valor.periodoId) ||
+      !this.catalogo.jornadas.includes(valor.jornada) ||
+      !this.catalogo.modalidades.includes(valor.modalidad) ||
+      !this.catalogo.estados.includes(valor.estado)
+    ) {
+      this.mensajeError =
+        'Selecciona un período, jornada, modalidad y estado válidos del catálogo.';
       return;
     }
-    const cursosPermitidos = new Set(this.cursosDisponibles.map(curso => curso.id));
-    if (valor.cursoIds.some(id => !cursosPermitidos.has(id))) {
-      this.mensajeError = 'Todos los cursos deben pertenecer a la carrera del estudiante seleccionado.';
+    const cursosPermitidos = new Set(this.cursosDisponibles.map((curso) => curso.id));
+    if (valor.cursoIds.some((id) => !cursosPermitidos.has(id))) {
+      this.mensajeError =
+        'Todos los cursos deben pertenecer a la carrera del estudiante seleccionado.';
       return;
     }
     const item: Inscripcion = {
       ...valor,
       id: this.idEditar ?? `INS-${crypto.randomUUID()}`,
-      fecha: this.registro.inscripciones().find(i => i.id === this.idEditar)?.fecha ?? new Date().toISOString()
+      fecha:
+        this.registro.inscripciones().find((i) => i.id === this.idEditar)?.fecha ??
+        new Date().toISOString(),
     };
     this.registro.guardarInscripcion(item);
     this.router.navigate(['/inscripciones']);

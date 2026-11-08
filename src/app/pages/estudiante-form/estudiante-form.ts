@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { RegistroService } from '../../services/registro.service';
 import { CatalogosService } from '../../services/catalogos.service';
 import { Estudiante } from '../../models/academic.models';
+
+const TELEFONO_VALIDO = /^(?=(?:\D*\d){8}\D*$)[0-9+() -]{8,20}$/;
 
 function fechaLocalActual(): string {
   const fecha = new Date();
@@ -50,9 +52,9 @@ function textoRecortado(minimo: number, maximo: number): ValidatorFn {
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  templateUrl: './estudiante-form.html'
+  templateUrl: './estudiante-form.html',
 })
 export class EstudianteForm {
   private readonly fb = inject(FormBuilder);
@@ -69,32 +71,41 @@ export class EstudianteForm {
     codigo: ['', [Validators.required, Validators.pattern(/^EST-[0-9]{3,}$/)]],
     nombres: ['', textoRecortado(2, 60)],
     apellidos: ['', textoRecortado(2, 60)],
-    fechaNacimiento: ['', [
-      Validators.required,
-      (control: AbstractControl) => control.value && control.value > this.fechaMaxima ? { fechaFutura: true } : null
-    ]],
+    fechaNacimiento: [
+      '',
+      [
+        Validators.required,
+        (control: AbstractControl) =>
+          control.value && control.value > this.fechaMaxima ? { fechaFutura: true } : null,
+      ],
+    ],
     genero: ['Prefiero no indicar', Validators.required],
     correo: ['', [Validators.required, Validators.email]],
     direccion: ['', textoRecortado(5, 160)],
     carrera: [this.catalogo.carreras[0]?.nombre ?? '', Validators.required],
-    contactos: this.fb.array([this.crearContacto()])
+    contactos: this.fb.array([this.crearContacto()]),
   });
 
   constructor() {
     if (this.idEditar) {
-      const estudiante = this.registro.estudiantes().find(item => item.id === this.idEditar);
+      const estudiante = this.registro.estudiantes().find((item) => item.id === this.idEditar);
       if (estudiante) {
         this.formulario.patchValue(estudiante);
-        this.formulario.setControl('contactos', this.fb.array(
-          estudiante.contactos.map(contacto => this.fb.nonNullable.group({
-            numero: [contacto.numero, [
-              Validators.required,
-              Validators.pattern(/^(?=.*\S)[0-9+() -]{8,20}$/)
-            ]],
-            tipo: [contacto.tipo, Validators.required],
-            activo: [contacto.activo]
-          }))
-        ));
+        this.formulario.setControl(
+          'contactos',
+          this.fb.array(
+            estudiante.contactos.map((contacto) =>
+              this.fb.nonNullable.group({
+                numero: [
+                  contacto.numero,
+                  [Validators.required, Validators.pattern(TELEFONO_VALIDO)],
+                ],
+                tipo: [contacto.tipo, Validators.required],
+                activo: [contacto.activo],
+              }),
+            ),
+          ),
+        );
       }
     }
   }
@@ -105,16 +116,16 @@ export class EstudianteForm {
 
   private crearContacto() {
     return this.fb.nonNullable.group({
-      numero: ['', [
-        Validators.required,
-        Validators.pattern(/^(?=.*\S)[0-9+() -]{8,20}$/)
-      ]],
+      numero: ['', [Validators.required, Validators.pattern(TELEFONO_VALIDO)]],
       tipo: ['Móvil' as 'Móvil' | 'Casa' | 'Trabajo' | 'Otro', Validators.required],
-      activo: [true]
+      activo: [true],
     });
   }
 
-  agregarContacto(): void { this.contactos.push(this.crearContacto()); }
+  agregarContacto(): void {
+    this.contactos.push(this.crearContacto());
+  }
+
   quitarContacto(indice: number): void {
     if (this.contactos.length > 1) this.contactos.removeAt(indice);
   }
@@ -123,8 +134,12 @@ export class EstudianteForm {
     this.formulario.markAllAsTouched();
     if (this.formulario.invalid) return;
     const valor = this.formulario.getRawValue();
-    const duplicado = this.registro.estudiantes().some(item =>
-      item.codigo.toLowerCase() === valor.codigo.toLowerCase() && item.id !== this.idEditar);
+    const duplicado = this.registro
+      .estudiantes()
+      .some(
+        (item) =>
+          item.codigo.toLowerCase() === valor.codigo.toLowerCase() && item.id !== this.idEditar,
+      );
     if (duplicado) {
       this.formulario.controls.codigo.setErrors({ duplicado: true });
       return;
@@ -134,14 +149,15 @@ export class EstudianteForm {
       nombres: valor.nombres.trim(),
       apellidos: valor.apellidos.trim(),
       direccion: valor.direccion.trim(),
-      contactos: valor.contactos.map(contacto => ({
+      contactos: valor.contactos.map((contacto) => ({
         ...contacto,
-        numero: contacto.numero.trim()
+        numero: contacto.numero.trim(),
       })),
       id: this.idEditar ?? crypto.randomUUID(),
       fechaRegistro: this.idEditar
-        ? this.registro.estudiantes().find(item => item.id === this.idEditar)?.fechaRegistro ?? new Date().toISOString()
-        : new Date().toISOString()
+        ? (this.registro.estudiantes().find((item) => item.id === this.idEditar)?.fechaRegistro ??
+          new Date().toISOString())
+        : new Date().toISOString(),
     };
     this.registro.guardarEstudiante(estudiante);
     this.router.navigate(['/estudiantes']);

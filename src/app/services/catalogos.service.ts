@@ -7,7 +7,7 @@ import { Catalogos } from '../models/academic.models';
 export class CatalogosService {
   private readonly datos: Catalogos = {
     ...catalogosData,
-    periodos: periodosData
+    periodos: periodosData,
   };
 
   obtener(): Catalogos {
